@@ -143,6 +143,7 @@ def fetch_ts(data_dir, clean=True):
     return(dfs)
 
 def engineer_features(df,training=False):
+   
     """
     for any given day the target becomes the sum of the next days revenue;
     for that day we engineer several features that help predict the total revenue
@@ -161,8 +162,6 @@ def engineer_features(df,training=False):
     previous =[7, 14, 28, 35]  #[7, 14, 21, 28, 35, 42, 49, 56, 63, 70]
     y = np.zeros(dates.size)
     for d,day in enumerate(dates):
-
-        ## use windows in time back from a specific date
         for num in previous:
             current = np.datetime64(day, 'D')
             prev = current - np.timedelta64(num, 'D')
@@ -174,7 +173,7 @@ def engineer_features(df,training=False):
         mask = np.in1d(dates, np.arange(current,plus_30,dtype='datetime64[D]'))
         y[d] = df[mask]['revenue'].sum()
 
-        ## attempt to capture monthly trend with previous years data (if present)
+        ## Capture monthly trend with previous years data (if present)
         start_date = current - np.timedelta64(365,'D')
         stop_date = plus_30 - np.timedelta64(365,'D')
         mask = np.in1d(dates, np.arange(start_date,stop_date,dtype='datetime64[D]'))
@@ -197,15 +196,13 @@ def engineer_features(df,training=False):
     X.reset_index(drop=True, inplace=True)
 
     if training == True:
-        ## remove the last 30 days (because the target is not reliable)
+        ## remove the last 30 days
         mask = np.arange(X.shape[0]) < np.arange(X.shape[0])[-30]
         X = X[mask]
         y = y[mask]
         dates = dates[mask]
         X.reset_index(drop=True, inplace=True)
-
     return(X,y,dates)
-
 
 if __name__ == "__main__":
 
