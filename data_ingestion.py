@@ -19,7 +19,7 @@ def fetch_data(data_dir):
     
     ## List of all the json files
     file_list = [os.path.join(data_dir,f) for f in os.listdir(data_dir) if re.search("\.json",f)] 
-    correct_columns = ['country', 'customer_id', 'day', 'invoice', 'month',
+    columns = ['country', 'customer_id', 'day', 'invoice', 'month',
                        'price', 'stream_id', 'times_viewed', 'year']
 
     ## read data into a temp structure
@@ -55,7 +55,7 @@ def fetch_data(data_dir):
     return(df)
 
 
-def convert_to_ts(df_orig, country=None):
+def convert_ts(df_orig, country=None):
     """
     given the original DataFrame (fetch_data())
     return a numerically indexed time-series DataFrame
@@ -130,11 +130,11 @@ def fetch_ts(data_dir, clean=True):
 
     ## load the data
     dfs = {}
-    dfs['all'] = convert_to_ts(df)
+    dfs['all'] = convert_ts(df)
     for country in top_ten_countries:
         country_id = re.sub("\s+","_",country.lower())
         file_name = os.path.join(data_dir,"ts-"+ country_id + ".csv")
-        dfs[country_id] = convert_to_ts(df,country=country)
+        dfs[country_id] = convert_ts(df,country=country)
 
     ## save the data as csvs
     for key, item in dfs.items():
@@ -173,13 +173,13 @@ def engineer_features(df,training=False):
         mask = np.in1d(dates, np.arange(current,plus_30,dtype='datetime64[D]'))
         y[d] = df[mask]['revenue'].sum()
 
-        ## Capture monthly trend with previous years data (if present)
+        ## Monthly trends with previous years data 
         start_date = current - np.timedelta64(365,'D')
         stop_date = plus_30 - np.timedelta64(365,'D')
         mask = np.in1d(dates, np.arange(start_date,stop_date,dtype='datetime64[D]'))
         eng_feat['previous_year'].append(df[mask]['revenue'].sum())
 
-        ## add some non-revenue features
+        ## add non-revenue features
         minus_30 = current - np.timedelta64(30,'D')
         mask = np.in1d(dates, np.arange(minus_30,current,dtype='datetime64[D]'))
         eng_feat['recent_invoices'].append(df[mask]['unique_invoices'].mean())
@@ -187,7 +187,7 @@ def engineer_features(df,training=False):
 
     X = pd.DataFrame(eng_feat)
     
-    ## combine features in to df and remove rows with all zeros
+    ## combine features into df and remove rows with all zeros
     X.fillna(0,inplace=True)
     mask = X.sum(axis=1)>0
     X = X[mask]
