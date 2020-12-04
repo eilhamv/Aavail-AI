@@ -1,0 +1,2 @@
+unique_id,timestamp,tag,score,runtime,model_version,model_note
+2bad887c-9742-44a4-9013-81c4c14c2b01,1607060989.0068479,TOTAL,Gradient Boosting,{'rmse': 24674.256335452057},000:00:09,0.1,supervised learing model for time-series

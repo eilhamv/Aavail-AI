@@ -1,0 +1,12 @@
+unique_id,timestamp,tag,score,runtime,model_version,model_note
+8f7d97dd-f6f0-4ef5-80ae-f68cb802cc8b,1607060334.4463768,SINGAPORE,Ada Boosting,{'rmse': 2240.6890752602835},000:00:09,0.1,supervised learing model for time-series
+1c08c6ce-3f9c-4b6a-8b79-1c9e815a1c1a,1607060341.3779447,NETHERLANDS,Stochastic Gradient,{'rmse': 336.9923840628871},000:00:06,0.1,supervised learing model for time-series
+a7e1fbdd-06a9-420d-8310-1c957d0e2b69,1607060346.760843,HONG_KONG,Stochastic Gradient,{'rmse': 1403.8021423047476},000:00:05,0.1,supervised learing model for time-series
+b0074e81-e829-48cc-a4e5-69d0d4740e57,1607060352.2207468,NORWAY,Stochastic Gradient,{'rmse': 8672.957978101298},000:00:05,0.1,supervised learing model for time-series
+38ad1a2c-a2d3-4ac1-8f70-c562000c4869,1607060358.918079,PORTUGAL,Stochastic Gradient,{'rmse': 1518.3926255515998},000:00:06,0.1,supervised learing model for time-series
+27db059a-f74c-4e32-a9ba-8fb8ad096535,1607060367.407756,EIRE,Stochastic Gradient,{'rmse': 3591.458570331361},000:00:08,0.1,supervised learing model for time-series
+eb18c054-6610-4f16-a306-15322a71e72a,1607060379.8433292,TOTAL,Stochastic Gradient,{'rmse': 65551.43936913142},000:00:12,0.1,supervised learing model for time-series
+db847d96-7b3e-4ed9-ab9d-4035515c98bd,1607060388.9234138,GERMANY,Stochastic Gradient,{'rmse': 923.9279085847534},000:00:09,0.1,supervised learing model for time-series
+dfa1fda7-cba0-433d-83eb-ce789cc7534f,1607060396.6864698,SPAIN,Stochastic Gradient,{'rmse': 606.6714627287913},000:00:07,0.1,supervised learing model for time-series
+e19ea8ee-aee7-4dd4-9422-42d55d37f72b,1607060403.9932036,FRANCE,Stochastic Gradient,{'rmse': 982.2148054792632},000:00:07,0.1,supervised learing model for time-series
+a55d7daf-f30c-4fd6-b164-6d7adaa1c78f,1607060412.5928774,UNITED_KINGDOM,Stochastic Gradient,{'rmse': 66632.01693127753},000:00:08,0.1,supervised learing model for time-series
